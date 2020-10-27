@@ -56,7 +56,7 @@ func runDupServerConsumer(dupServer dupServerConsumer) {
 		case item = <-dupServer.queue:
 			for {
 				if(client == nil) {
-					logger.Debugf("DEBUG: client is nil in runDupServerConsumer (dupAddress: %s)",dupAddress)
+					logger.Debugf("DEBUG: client is nil in runDupServerConsumer (dupAddress: %s)",dupServer.address)
 				}
 				error := sendResultDup(client, item, dupServer.address, dupServer.config)
 				if error != nil {
