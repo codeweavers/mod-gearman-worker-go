@@ -87,7 +87,7 @@ func sendResultDup(client *client.Client, item *answer, dupAddress string, confi
 		logger.Debugf("DEBUG: client is nil in sendResultDup (dupAddress: %s)",dupAddress)
 	}
 
-	_, err = sendAnswer(client, item, dupAddress, config.encryption)
+	client, err = sendAnswer(client, item, dupAddress, config.encryption)
 
 	return err
 }
