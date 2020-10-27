@@ -55,6 +55,9 @@ func runDupServerConsumer(dupServer dupServerConsumer) {
 			return
 		case item = <-dupServer.queue:
 			for {
+				if(client == nil) {
+					logger.Debugf("DEBUG: client is nil in runDupServerConsumer (dupAddress: %s)",dupAddress)
+				}
 				error := sendResultDup(client, item, dupServer.address, dupServer.config)
 				if error != nil {
 					client = nil
@@ -78,6 +81,10 @@ func sendResultDup(client *client.Client, item *answer, dupAddress string, confi
 
 	if config.dupResultsArePassive {
 		item.active = "passive"
+	}
+	
+	if(client == nil) {
+		logger.Debugf("DEBUG: client is nil in sendResultDup (dupAddress: %s)",dupAddress)
 	}
 
 	_, err = sendAnswer(client, item, dupAddress, config.encryption)

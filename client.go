@@ -11,7 +11,7 @@ import (
  */
 func sendAnswer(c *client.Client, answer *answer, server string, encrypted bool) (*client.Client, error) {
 	if c == nil {
-		logger.Debugf("Creating a new client for: %s", server)
+		logger.Debugf("DEBUG: Creating a new client for: %s", server)
 		cl, err := client.New("tcp", server)
 		if err != nil {
 			return nil, err
