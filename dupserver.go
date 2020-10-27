@@ -76,7 +76,7 @@ func runDupServerConsumer(dupServer dupServerConsumer) {
 	}
 }
 
-func sendResultDup(client *client.Client, item *answer, dupAddress string, config *configurationStruct) error {
+func sendResultDup(client *client.Client, item *answer, dupAddress string, config *configurationStruct) (*client.Client, error) {
 	var err error
 
 	if config.dupResultsArePassive {
