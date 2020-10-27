@@ -59,8 +59,8 @@ func runDupServerConsumer(dupServer dupServerConsumer) {
 				if(client == nil) {
 					logger.Debugf("DEBUG: client is nil in runDupServerConsumer (dupAddress: %s)",dupServer.address)
 				}
-				
-				client, error = sendResultDup(client, item, dupServer.address, dupServer.config)
+
+				client, err = sendResultDup(client, item, dupServer.address, dupServer.config)
 
 				if error != nil {
 					client = nil
