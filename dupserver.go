@@ -58,7 +58,7 @@ func runDupServerConsumer(dupServer dupServerConsumer) {
 				if(client == nil) {
 					logger.Debugf("DEBUG: client is nil in runDupServerConsumer (dupAddress: %s)",dupServer.address)
 				}
-				error := sendResultDup(client, item, dupServer.address, dupServer.config)
+				client, error := sendResultDup(client, item, dupServer.address, dupServer.config)
 				if error != nil {
 					client = nil
 					logger.Debugf("failed to send back result (to dupserver): %s", error.Error())
@@ -89,7 +89,7 @@ func sendResultDup(client *client.Client, item *answer, dupAddress string, confi
 
 	client, err = sendAnswer(client, item, dupAddress, config.encryption)
 
-	return err
+	return client, err
 }
 
 func enqueueDupServerResult(config *configurationStruct, result *answer) {
