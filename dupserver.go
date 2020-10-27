@@ -48,7 +48,7 @@ func terminateDupServerConsumers() bool {
 func runDupServerConsumer(dupServer dupServerConsumer) {
 	var client *client.Client
 	var item *answer
-	var err error
+	var error error
 
 	for {
 		select {
@@ -60,7 +60,7 @@ func runDupServerConsumer(dupServer dupServerConsumer) {
 					logger.Debugf("DEBUG: client is nil in runDupServerConsumer (dupAddress: %s)",dupServer.address)
 				}
 
-				client, err = sendResultDup(client, item, dupServer.address, dupServer.config)
+				client, error = sendResultDup(client, item, dupServer.address, dupServer.config)
 
 				if error != nil {
 					client = nil
